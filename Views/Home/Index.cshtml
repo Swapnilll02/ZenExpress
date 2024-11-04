@@ -1,0 +1,120 @@
+﻿@page
+<div class="hero" style="background-image: url('https://i.ibb.co/7kLDMf0/delivery.jpg'); background-size: cover; background-position: center; height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+    <h1>Welcome to ZenExpress</h1>
+    <p>Your reliable partner for all your delivery needs.</p>
+    <a href="/ship" class="btn btn-primary btn-lg">Book Your Shipment</a>
+</div>
+
+
+
+<section class="splash-page__delivery-options my-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="cmp-title__text">FLEXIBLE DELIVERY OPTIONS</h2>
+            <p class="lead">Choose the delivery method that best suits your needs!</p>
+        </div>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="https://publish-p104753-e1137327.adobeaemcloud.com/us/en/splash-page/_jcr_content/root/container/container_1858682883/container_1961943340/container_442452008/teaser_copy_2106905311.coreimg.svg/1701927483879/icon-safeplace.svg" class="card-img-top rounded-circle" alt="Leave in Safe Place">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Leave in Safe Place</h5>
+                        <p class="card-text">Authorize us to deliver your shipment without requiring a signature.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="https://publish-p104753-e1137327.adobeaemcloud.com/us/en/splash-page/_jcr_content/root/container/container_1858682883/container_1961943340/container_442452008/teaser_copy_copy.coreimg.svg/1701927483893/icon-changedeliverydatecalendar.svg" class="card-img-top rounded-circle" alt="Change Delivery Date">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Change Delivery Date</h5>
+                        <p class="card-text">Choose a delivery date that fits your schedule.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="https://publish-p104753-e1137327.adobeaemcloud.com/us/en/splash-page/_jcr_content/root/container/container_1858682883/container_1961943340/container_442452008/teaser_copy_copy_cop.coreimg.svg/1701927483705/icon-neighborconciergeguard.svg" class="card-img-top rounded-circle" alt="Leave with Neighbor or Concierge">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Leave with Neighbor, Concierge or Guard</h5>
+                        <p class="card-text">Nominate an authorized party to receive your shipment on your behalf.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="https://publish-p104753-e1137327.adobeaemcloud.com/us/en/splash-page/_jcr_content/root/container/container_1858682883/container_1961943340/container_1462645301/teaser_copy.coreimg.svg/1701927483855/icon-svcpoint.svg" class="card-img-top rounded-circle" alt="Collect from Service Point">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Collect from Service Point or Locker</h5>
+                        <p class="card-text">Collect your shipment from a convenient nearby service point.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="https://publish-p104753-e1137327.adobeaemcloud.com/us/en/splash-page/_jcr_content/root/container/container_1858682883/container_1961943340/container_1462645301/teaser_copy_1606994390.coreimg.svg/1701927483765/icon-alternateaddress.svg" class="card-img-top rounded-circle" alt="Deliver to Alternate Address">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Deliver to Alternate Address</h5>
+                        <p class="card-text">Have your shipment delivered to your office, friend, or another address.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="https://publish-p104753-e1137327.adobeaemcloud.com/us/en/splash-page/_jcr_content/root/container/container_1858682883/container_1961943340/container_1462645301/teaser_copy_667705345.coreimg.svg/1701927483727/icon-vacationhold.svg" class="card-img-top rounded-circle" alt="Vacation Hold">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Vacation Hold</h5>
+                        <p class="card-text">Postpone delivery by up to 30 days when you're away.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .card {
+        transition: transform 0.2s;
+        border-radius: 10px; /* Rounded corners for the cards */
+    }
+
+    .card:hover {
+        transform: scale(1.05); /* Slight zoom effect on hover */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    }
+
+    .cmp-title__text {
+        font-size: 2.5rem; /* Larger title size */
+        font-weight: bold;
+        color: #333; /* Darker text color for better contrast */
+    }
+
+    .card-title {
+        font-size: 1.5rem; /* Card title size */
+        font-weight: 600; /* Semi-bold font for titles */
+        color: #007bff; /* Bootstrap primary color */
+    }
+
+    .card-text {
+        color: #555; /* Grey color for description */
+    }
+
+    .card-img-top {
+        width: 100px; /* Set width for images */
+        height: 100px; /* Set height for images */
+        object-fit: cover; /* Maintain aspect ratio */
+        margin: 0 auto; /* Center image in card */
+    }
+</style>

@@ -1,0 +1,136 @@
+@model CourierService.Models.Shipment
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="mb-4">Shipment Details</h2>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Age</th>
+                        <td>@Model.Age</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Phone Number</th>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sender's Address</th>
+                        <td>@Model.SenderAddress</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Pickup Date</th>
+                        <td>@Model.PickupDate.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Items to Deliver</th>
+                        <td>@Model.ItemsToDeliver</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Receiver's Address</th>
+                        <td>@Model.ReceiverAddress</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Package Weight (kg)</th>
+                        <td>@Model.PackageWeight</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Delivery Option</th>
+                        <td>@Model.DeliveryOption</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Amount</th>
+                        <td style="color: green; font-weight: bold;">Rs.@Model.TotalAmount</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Payment QR Code</h5>
+                    <img src="~/images/qr.jpg" alt="QR Code" class="img-fluid mb-3"/>
+                    <p class="card-text">Scan to pay your total amount.</p>
+                    
+                    <div class="form-group">
+                        <!-- <label for="upiId">UPI Transaction ID</label> -->
+                        <input type="text" id="upiId" class="form-control" placeholder="Enter UPI Transaction ID" maxlength="12" />
+                        <!-- <small class="form-text text-muted">Must be a 12-digit integer.</small> -->
+                        <button type="button" id="verifyBtn" class="btn btn-link">Verify</button>
+                    </div>
+                    
+                    <div id="alertContainer" class="mt-2"></div>
+                    
+                    <button id="submitBtn" class="btn btn-success mt-3" disabled>Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Modal for Thank You Message -->
+<div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="thankYouModalLabel">Thank You!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Thank you for choosing us as your delivery partner!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#verifyBtn').click(function () {
+                const upiId = $('#upiId').val();
+                const alertContainer = $('#alertContainer');
+
+                // Clear previous alerts
+                alertContainer.empty();
+
+                // Validate UPI ID (12 digits)
+                const upiRegex = /^\d{12}$/;
+                if (upiRegex.test(upiId)) {
+                    alertContainer.append(`
+                        <div class="alert alert-success" role="alert">
+                            UPI Transaction ID is valid.
+                        </div>
+                    `);
+                    $('#submitBtn').prop('disabled', false); // Enable submit button
+                } else {
+                    alertContainer.append(`
+                        <div class="alert alert-danger" role="alert">
+                            Invalid UPI Transaction ID. Please enter a valid 12-digit integer.
+                        </div>
+                    `);
+                    $('#submitBtn').prop('disabled', true); // Disable submit button
+                }
+
+                // Set timeout to remove the alert after 5 seconds
+                setTimeout(function() {
+                    alertContainer.empty();
+                }, 5000);
+            });
+
+            $('#submitBtn').click(function () {
+                // Show the thank you modal when submit button is clicked
+                $('#thankYouModal').modal('show');
+            });
+        });
+    </script>
+}

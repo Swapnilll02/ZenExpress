@@ -1,0 +1,122 @@
+@model CourierService.Models.Shipment
+@{
+    ViewData["Title"] = "Shipment Details";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Column: Form -->
+        <div class="col-md-6">
+            <h2>Enter Shipment Details</h2>
+            <form asp-action="Ship" method="post" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input asp-for="Name" class="form-control" id="name" required />
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age:</label>
+                    <input asp-for="Age" type="number" class="form-control" id="age" required />
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number:</label>
+                    <input asp-for="PhoneNumber" type="tel" class="form-control" id="phoneNumber" required />
+                </div>
+                <div class="mb-3">
+                    <label for="senderAddress" class="form-label">Sender's Address:</label>
+                    <input asp-for="SenderAddress" class="form-control" id="senderAddress" required />
+                </div>
+                <div class="mb-3">
+                    <label for="pickupDate" class="form-label">Pickup Date:</label>
+                    <input asp-for="PickupDate" type="date" class="form-control" id="pickupDate" required />
+                </div>
+                <div class="mb-3">
+                    <label for="itemsToDeliver" class="form-label">Items to Deliver:</label>
+                    <input asp-for="ItemsToDeliver" class="form-control" id="itemsToDeliver" required />
+                </div>
+                <div class="mb-3">
+                    <label for="receiverAddress" class="form-label">Receiver's Address:</label>
+                    <input asp-for="ReceiverAddress" class="form-control" id="receiverAddress" required />
+                </div>
+                <div class="mb-3">
+                    <label for="packageWeight" class="form-label">Package Weight (kg):</label>
+                    <input asp-for="PackageWeight" type="number" min="0" class="form-control" id="packageWeight" required />
+                </div>
+
+                <!-- Delivery Option -->
+                <div class="mb-3">
+                    <label class="form-label">Delivery Option:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="oneDay" name="deliveryOption" value="One Day Delivery" required />
+                        <label for="oneDay" class="form-check-label">One Day Delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="standard" name="deliveryOption" value="Standard Delivery" required />
+                        <label for="standard" class="form-check-label">Standard Delivery</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success mt-3">Submit</button>
+            </form>
+        </div>
+
+        <!-- Right Column: Price Chart and Total Amount -->
+        <div class="col-md-6">
+            <h2>Price Chart</h2>
+            <table class="table table-bordered mt-3">
+                <thead class="table-light">
+                    <tr>
+                        <th>Weight</th>
+                        <th>Standard Price</th>
+                        <th>One Day Delivery</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0-2 KG</td><td>Rs.100</td><td>Rs.200</td></tr>
+                    <tr><td>2-5 KG</td><td>Rs.299</td><td>Rs.399</td></tr>
+                    <tr><td>5-10 KG</td><td>Rs.499</td><td>Rs.599</td></tr>
+                    <tr><td>10-25 KG</td><td>Rs.799</td><td>Rs.899</td></tr>
+                    <tr><td>25 KG & Above</td><td>Rs.999</td><td>Rs.1099</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Calculate Amount Button and Total Amount Box -->
+            <div class="mt-4">
+                <button onclick="calculateTotal()" class="btn btn-primary">Calculate Amount</button>
+                <div id="totalAmount" class="mt-3 p-2 text-center" style="font-size: 24px; color: green; display: none;">Rs.0</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateTotal() {
+        // Get the package weight from the form
+        const weight = parseFloat(document.getElementById("packageWeight").value);
+        const isOneDayDelivery = document.getElementById("oneDay").checked;
+
+        let total = 0;
+
+        // Calculate the base price according to weight
+        if (weight > 0 && weight <= 2) {
+            total = 100;
+        } else if (weight > 2 && weight <= 5) {
+            total = 299;
+        } else if (weight > 5 && weight <= 10) {
+            total = 499;
+        } else if (weight > 10 && weight <= 25) {
+            total = 799;
+        } else if (weight > 25) {
+            total = 999;
+        }
+
+        // Add extra charge for One Day Delivery
+        if (isOneDayDelivery) {
+            total += 100;
+        }
+
+        // Display the calculated amount in the Total Amount box
+        const totalAmountBox = document.getElementById('totalAmount');
+        totalAmountBox.innerText = `Rs.${total}`;
+        totalAmountBox.style.display = 'block';
+    }
+</script>
