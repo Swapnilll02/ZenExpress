@@ -17,3 +17,7 @@ The project follows the MVC architecture, organized into:
 - **Models**: Contains `Shipment` class which defines the shipment properties and validation rules.
 - **Views**: Contains Razor views for `Ship`, `Summary`, and the main pages.
 - **Controllers**: `ShipmentController` handles routing for shipment-related actions, such as displaying the booking form and processing the shipment details.
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Swapnilll02/ZenExpress.git
